@@ -41,7 +41,7 @@ A histogram of the number of days with respect to the step number is shown below
 hist(df_by_day$x,10, xlab="Daily number of steps", main="Daily number of steps hisogram")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+![](PA1_template_files/figure-html/hist_uncorrected-1.png)<!-- -->
 
 The mean daily activity is shown below:
 
@@ -70,7 +70,7 @@ df_mat <- matrix(data = df$steps, nrow = 288, ncol = 61)
 plot(rowMeans(df_mat, na.rm=TRUE), type='l', xlab="5 minute intervals", main="Average daily activity", ylab="Step count")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+![](PA1_template_files/figure-html/plot_uncorrected-1.png)<!-- -->
 
 The computation for the maximum number of steps within a day is shown below:
 
@@ -122,7 +122,7 @@ df_by_day_cleaned <- aggregate(df$stepscleaned, by=list(df$date), sum)
 hist(df_by_day_cleaned$x,10, xlab="Daily number of steps", main="Daily number of steps hisogram")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
+![](PA1_template_files/figure-html/hist_corrected-1.png)<!-- -->
 
 No change is observed in the mean with respect to the uncorrected data:
 
@@ -163,4 +163,4 @@ plot(rowMeans(df_mat_wd, na.rm=TRUE), type='l', xlab="5 minute intervals", main=
 plot(rowMeans(df_mat_we, na.rm=TRUE), type='l', xlab="5 minute intervals", main="Weekday average step count", ylab="Step count")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
+![](PA1_template_files/figure-html/plot_corrected_weekday_weekend-1.png)<!-- -->

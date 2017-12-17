@@ -24,7 +24,7 @@ head(df_by_day)
 ## What is the average daily activity pattern?
 
 A histogram of the number of days with respect to the step number is shown below:
-```{r}
+```{r hist_uncorrected}
 hist(df_by_day$x,10, xlab="Daily number of steps", main="Daily number of steps hisogram")
 ```
 
@@ -39,7 +39,7 @@ median(df_by_day$x,na.rm=TRUE)
 ```
 
 A line plot of the average daily activity pattern is shown below as a function of the 5-minute interval (288 in the span of 24 hours):
-```{r}
+```{r plot_uncorrected}
 df_mat <- matrix(data = df$steps, nrow = 288, ncol = 61)
 plot(rowMeans(df_mat, na.rm=TRUE), type='l', xlab="5 minute intervals", main="Average daily activity", ylab="Step count")
 ```
@@ -75,7 +75,7 @@ for (naidx in 1:length(indices_with_na)){
 ```
 
 A histogram shows the results of data cleaning below:
-```{r}
+```{r hist_corrected}
 df_by_day_cleaned <- aggregate(df$stepscleaned, by=list(df$date), sum)
 
 hist(df_by_day_cleaned$x,10, xlab="Daily number of steps", main="Daily number of steps hisogram")
@@ -100,7 +100,7 @@ df['dayofweek'] <- as.factor(ifelse(weekdays(df$date) %in% c("Saturday", "Sunday
 ```
 
 The resulting plots of the average daily step counts for weekdays and weekends are shown below:
-```{r}
+```{r plot_corrected_weekday_weekend}
 df_mat_wd <- matrix(data = subset(df,df$dayofweek=="weekday")$steps, nrow = 288, ncol = nrow(subset(df,df$dayofweek=="weekday"))/288)
 df_mat_we <- matrix(data = subset(df,df$dayofweek=="weekend")$steps, nrow = 288, ncol = nrow(subset(df,df$dayofweek=="weekend"))/288)
 par(mfrow=c(1,2))
